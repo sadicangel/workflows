@@ -1,8 +1,11 @@
 using Elsa;
 using Elsa.Persistence.EntityFramework.Core.Extensions;
 using Elsa.Persistence.EntityFramework.Sqlite;
+using WorkFlows.WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<IHashAlgorithmProvider, HashAlgorithmProvider>();
 
 builder.Services.AddElsa(elsa => elsa
     .UseEntityFrameworkPersistence(ef => ef.UseSqlite())
